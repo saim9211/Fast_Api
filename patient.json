@@ -1,0 +1,42 @@
+[
+  {
+    "patient_id": "PT-88312",
+    "age": 45,
+    "gender": "Male",
+    "systolic_bp": 128,
+    "diastolic_bp": 84,
+    "cholesterol_tier": "Normal",
+    "smoker_status": "Never Smoked",
+    "body_mass_index": 24.5
+  },
+  {
+    "patient_id": "PT-91024",
+    "age": 62,
+    "gender": "Female",
+    "systolic_bp": 145,
+    "diastolic_bp": 92,
+    "cholesterol_tier": "High",
+    "smoker_status": "Regular Smoker",
+    "body_mass_index": 31.2
+  },
+  {
+    "patient_id": "PT-33411",
+    "age": 29,
+    "gender": "Male",
+    "systolic_bp": 115,
+    "diastolic_bp": 75,
+    "cholesterol_tier": "Borderline High",
+    "smoker_status": "Former Smoker",
+    "body_mass_index": 22.1
+  },
+  {
+    "patient_id": "PT-55678",
+    "age": 53,
+    "gender": "Female",
+    "systolic_bp": 138,
+    "diastolic_bp": 88,
+    "cholesterol_tier": "Normal",
+    "smoker_status": "Never Smoked",
+    "body_mass_index": 28.7
+  }
+]
