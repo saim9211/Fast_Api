@@ -1,0 +1,5 @@
+from fastapi import FastAPI
+app=FastAPI()
+@app.get("/")
+def fist_try():
+    return {"first impression is the last one "}
