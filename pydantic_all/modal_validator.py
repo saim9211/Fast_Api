@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field,field_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 class Patient(BaseModel):
     name: str
@@ -10,12 +10,12 @@ class Patient(BaseModel):
     allergy: list = []
     contact: dict = {}
 
-    @field_validator('age')    
+    @model_validator(mode='before')
     @classmethod
-    def validate_age(cls, value):
-        if value < 1:
-            raise ValueError('Age must be a positive integer')
-        return value
+    def validate_patient(cls, model):
+        if model['age'] < 1 and 'emergency' not in model['contact']:
+            raise ValueError('Age must be a positive integer and contact must contain emergency info')
+        return model
 
 def insert_data(name: str, age: int):
     print(name, age)
@@ -25,7 +25,7 @@ def update_data(name: str, age: int, email: str, linkdin: str, married: bool, al
     print(name, age, email, linkdin, married, allergy, contact, number)
     return {"name": name, "age": age, "email": email, "linkdin": linkdin, "married": married, "allergy": allergy, "contact": contact, "number": number}
 
-patient2 = {'name': 'paisa', 'age': 34, 'email': 'saimayan@gmail.com', 'linkdin': 'https://gem.com', 'married': True, 'number': 1234567890, 'contact': {'phone': 1234567890}}
+patient2 = {'name': 'paisa', 'age': 0, 'email': 'saimayan@gmail.com', 'linkdin': 'https://gem.com', 'married': True, 'number': 1234567890, 'contact': {}}
 
 patient1 = Patient(**patient2)
 

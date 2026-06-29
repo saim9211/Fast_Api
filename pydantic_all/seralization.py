@@ -1,0 +1,66 @@
+from pydantic import BaseModel, Field, field_validator, model_validator
+class Addrress(BaseModel):
+    street: str
+    city: str
+    state: str
+    
+
+class Patient(BaseModel):
+    name: str
+    age: int
+    email: str
+    linkdin: str
+    number: int
+    married: bool
+    address: Addrress
+    allergy: list = []
+    contact: dict = {}
+
+    @model_validator(mode='before')
+    @classmethod
+    def validate_patient(cls, model):
+        if model['age'] < 1 and 'emergency' not in model['contact']:
+            raise ValueError('Age must be a positive integer and contact must contain emergency info')
+        return model
+
+def insert_data(name: str, age: int):
+    print(name, age)
+    return {"name": name, "age": age}
+
+def update_data(name: str, age: int, email: str, linkdin: str, married: bool, allergy: list, contact: dict, number: int, address: Addrress):
+    print(name, age, email, linkdin, married, allergy, contact, number, address.street, address.city, address.state)
+    return {"name": name, "age": age, "email": email, "linkdin": linkdin, "married": married, "allergy": allergy, "contact": contact, "number": number}
+
+Address2 = {'street': '123 Main St', 'city': 'New York', 'state': 'NY'}
+new_address = Addrress(**Address2)
+
+patient2 = {'name': 'paisa', 'age': 17, 'email': 'saimayan@gmail.com', 'linkdin': 'https://gem.com', 'married': True, 'number': 1234567890, 'contact': {}, 'address': new_address}
+
+patient1 = Patient(**patient2)
+
+# insert_data(patient1.name, patient1.age)
+
+#patient1.name='saim'
+#patient1.age=25
+
+update_data(patient1.name, patient1.age, patient1.email, patient1.linkdin, patient1.married, patient1.allergy, patient1.contact, patient1.number, patient1.address)
+
+
+
+temp=patient1.model_dump()
+
+print(type(temp))
+
+temp2=patient1.model_dump_json()
+print(type(temp2))
+
+
+temp=patient1.model_dump(include={'name','age'},exclude={'email','linkdin'})
+
+
+print(type(temp))
+
+
+temp=patient1.model_dump(exclude_unset=True)
+
+print(type(temp))
