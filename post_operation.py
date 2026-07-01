@@ -24,7 +24,7 @@ class Patient(BaseModel):
     @computed_field
     @property
     def bmi(self) -> float:
-        return round(self.weight / (self.height ** 2), 2)
+        return round(self.weight / ((self.height / 100) ** 2), 2)
 
     @computed_field
     @property

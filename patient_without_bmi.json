@@ -58,14 +58,14 @@
   },
   {
     "patient_id": "pt8",
-    "age": 23,
+    "age": 35,
     "gender": "male",
     "systolic_bp": 56,
     "diastolic_bp": 77,
     "cholesterol_tier": "normal",
     "smoker_status": "normal",
-    "weight": 67,
-    "height": 144,
+    "weight": 90,
+    "height": 188,
     "bmi": 0.0,
     "bmi_status": "under_weight"
   }
